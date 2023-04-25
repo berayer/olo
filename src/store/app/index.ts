@@ -12,7 +12,7 @@ interface AppStore {
 export const useAppStore = defineStore('appStore', {
   state: (): AppStore => ({
     siderCollapse: false,
-    siderWidth: 208,
+    siderWidth: 240,
     collapsedWidth: 64
   })
 })

@@ -1,6 +1,6 @@
 <template>
   <n-layout has-sider class="h-screen">
-    <n-layout-sider :width="208">
+    <n-layout-sider :width="appStore.siderWidth">
       <GlobalSider />
     </n-layout-sider>
     <n-layout class="h-full">
@@ -8,7 +8,7 @@
         <GlobalHeader />
       </n-layout-header>
       <n-layout-content
-        content-style="margin: 0 16px 16px 0; border-radius: 16px; height: calc(100vh - 64px); padding: 16px 0 16px 16px; background-color: #ffffff;"
+        content-style="margin: 0 16px 16px 0; border-radius: 16px; height: calc(100vh - 64px); padding: 16px 0 16px 0; background-color: #ffffff;"
       >
         <n-scrollbar class="h-full">
           <router-view />

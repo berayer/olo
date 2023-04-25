@@ -11,7 +11,9 @@ declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     NaiveProvider: typeof import('./../components/NaiveProvider.vue')['default']
     NButton: typeof import('naive-ui')['NButton']
+    NDataTable: typeof import('naive-ui')['NDataTable']
     NDialogProvider: typeof import('naive-ui')['NDialogProvider']
+    NDivider: typeof import('naive-ui')['NDivider']
     NLayout: typeof import('naive-ui')['NLayout']
     NLayoutContent: typeof import('naive-ui')['NLayoutContent']
     NLayoutFooter: typeof import('naive-ui')['NLayoutFooter']
@@ -22,6 +24,7 @@ declare module '@vue/runtime-core' {
     NMessageProvider: typeof import('naive-ui')['NMessageProvider']
     NNotificationProvider: typeof import('naive-ui')['NNotificationProvider']
     NScrollbar: typeof import('naive-ui')['NScrollbar']
+    NTable: typeof import('naive-ui')['NTable']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }
