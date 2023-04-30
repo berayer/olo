@@ -24,15 +24,23 @@ import { GlobalHeader, GlobalSider } from './components'
 import { v_getUserMenu } from '@/api'
 import { useTabStore, useAppStore } from '@/store'
 import { registerRouterByMenus } from '@/utils/router'
+import { useRoute } from 'vue-router'
+import { router } from '@/router'
 
 const tabStore = useTabStore()
 const appStore = useAppStore()
+const route = useRoute()
 
 // 设置当前用户的系统菜单
 v_getUserMenu().then((res) => {
   tabStore.setAppMenus(coverToMenus(res.data))
   // 注册路由
   registerRouterByMenus(res.data)
+  removeAllPatch()
+  const is = ohterSkip()
+  if (!is && tabStore.menus && tabStore.menus.length > 0) {
+    router.push(tabStore.menus[0].key as string)
+  }
 })
 
 /**
@@ -49,6 +57,37 @@ function coverToMenus(menus: Menu[]): MenuOption[] {
       item.children = coverToMenus(v.children)
     }
     return item
+  })
+}
+
+function ohterSkip(): boolean {
+  if (route.query && route.query.url && route.query.url != '/index') {
+    // 检查路径是否有权限
+    const routers = router.getRoutes()
+    const one = routers.find(({ path }) => {
+      return route.query.url == path
+    })
+    if (one) {
+      let query = JSON.parse(route.query.query as string)
+      router.push({
+        path: route.query.url as string,
+        query: Object.keys(query).length ? query : {}
+      })
+    } else {
+      router.push({ path: '/404', replace: true })
+    }
+    return true
+  }
+  return false
+}
+
+// 移除全路径匹配导向404
+function removeAllPatch() {
+  router.removeRoute('NotFound')
+  router.addRoute({
+    path: '/:path(.*)*',
+    name: 'NotFound',
+    redirect: '/404'
   })
 }
 </script>

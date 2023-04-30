@@ -17,12 +17,22 @@ export const constantRoutes: RouteRecordRaw[] = [
     path: '/index',
     name: 'HomeLayout',
     component: () => import('@/layouts/HomeLayout.vue'),
-    redirect: '/system/menu',
-    children: [
-      {
-        path: '/system/menu',
-        component: () => import('@/views/system/menu/Index.vue')
+    children: []
+  },
+  {
+    path: '/404',
+    component: () => import('@/views/_base/404.vue')
+  },
+  {
+    path: '/:path(.*)*',
+    name: 'NotFound',
+    redirect: (to) => {
+      return {
+        name: 'HomeLayout',
+        /** @url https://github.com/vuejs/router/issues/1617 解决警告报错 */
+        params: {},
+        query: { url: to.path, query: JSON.stringify(to.query) }
       }
-    ]
+    }
   }
 ]

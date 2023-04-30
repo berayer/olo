@@ -1,55 +1,59 @@
 <template>
-  <div class="space-x-5 px-4">
-    <n-button text >
-      <template #icon>
-        <MaterialSymbolsAdd />
+  <div class="space-x-2 px-4">
+    <n-popover placement="bottom" trigger="hover" :delay="500">
+      <template #trigger>
+        <n-button quaternary circle size="small" class="p-5">
+          <template #icon>
+            <Icon name="material-symbols:add" />
+          </template>
+        </n-button>
       </template>
-    </n-button>
-    <n-button text> 删除 </n-button>
-    <n-button text> 刷新 </n-button>
-    <n-button text> 用户 </n-button>
+      <span>新增</span>
+    </n-popover>
+
+    <n-popover placement="bottom" trigger="hover" :delay="500">
+      <template #trigger>
+        <n-button quaternary circle size="small" class="p-5">
+          <template #icon>
+            <Icon name="material-symbols:delete-outline" />
+          </template>
+        </n-button>
+      </template>
+      <span>删除</span>
+    </n-popover>
+
+    <n-popover placement="bottom" trigger="hover" :delay="500">
+      <template #trigger>
+        <n-button quaternary circle size="small" class="p-5">
+          <template #icon>
+            <Icon name="material-symbols:refresh-rounded" />
+          </template>
+        </n-button>
+      </template>
+      <span>刷新</span>
+    </n-popover>
   </div>
-  <n-divider />
-  <div>
+
+  <div class="mt-2">
     <n-data-table
       :data="data"
       :columns="coloums"
       :bordered="false"
-      :row-key="(row) => row.username"
+      :row-key="(row) => row.id"
+      :loading="state.loading"
     />
   </div>
 </template>
 
 <script setup lang="ts">
 import type { DataTableColumns } from 'naive-ui'
-import MaterialSymbolsAdd from '~icons/material-symbols/add'
+import { v_userList } from '@/api/user'
 
-const data = [
-  {
-    username: 'admin',
-    nickName: '超级管理员',
-    phone: '88886666',
-    roles: ['管理员', '用户']
-  },
-  {
-    username: 'user1',
-    nickName: '马飞飞',
-    phone: '',
-    roles: ['用户']
-  },
-  {
-    username: 'wangjichao',
-    nickName: '王继超',
-    phone: '17671075980',
-    roles: ['主播']
-  },
-  {
-    username: 'lubenwei666',
-    nickName: '卢本伟',
-    phone: '',
-    roles: ['小丑']
-  }
-]
+const data = ref([])
+const state = reactive({
+  loading: true
+})
+
 const coloums: DataTableColumns = [
   {
     type: 'selection'
@@ -71,4 +75,9 @@ const coloums: DataTableColumns = [
     key: 'roles'
   }
 ]
+
+v_userList().then((res) => {
+  data.value = res.data
+  state.loading = false
+})
 </script>
