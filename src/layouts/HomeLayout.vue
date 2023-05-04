@@ -8,11 +8,11 @@
         <GlobalHeader />
       </n-layout-header>
       <n-layout-content
-        content-style="margin: 0 16px 16px 0; border-radius: 16px; height: calc(100vh - 64px); padding: 16px 0 16px 0; background-color: #ffffff;"
+        content-style="margin: 0 16px 16px 0; border-radius: 16px; height: calc(100vh - 64px); background-color: #ffffff;"
       >
-        <n-scrollbar class="h-full">
-          <router-view />
-        </n-scrollbar>
+        <!-- <n-scrollbar class="h-full"> -->
+        <router-view />
+        <!-- </n-scrollbar> -->
       </n-layout-content>
     </n-layout>
   </n-layout>
