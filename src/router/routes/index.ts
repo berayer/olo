@@ -20,8 +20,16 @@ export const constantRoutes: RouteRecordRaw[] = [
     children: []
   },
   {
+    path: '/403',
+    component: () => import('@/views/_base/403.vue')
+  },
+  {
     path: '/404',
     component: () => import('@/views/_base/404.vue')
+  },
+  {
+    path: '/500',
+    component: () => import('@/views/_base/500.vue')
   },
   {
     path: '/:path(.*)*',

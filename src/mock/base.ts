@@ -15,34 +15,40 @@ Mock.mock('/v2/userMenu', {
     {
       id: 1,
       label: '首页',
-      path: '/home'
+      path: '/home',
+      icon: 'mdi:home-outline'
     },
     {
       id: 2,
       label: '系统管理',
       path: '/system',
+      icon: 'mdi:cog-outline',
       children: [
         {
           id: 3,
           label: '用户管理',
-          path: '/system/user'
+          path: '/system/user',
+          icon: 'mdi:account-outline'
         },
         {
           id: 4,
           label: '角色管理',
-          path: '/system/role'
+          path: '/system/role',
+          icon: 'mdi:account-group-outline'
         },
         {
           id: 5,
           label: '菜单管理',
-          path: '/system/menu'
+          path: '/system/menu',
+          icon: 'mdi:view-grid-outline'
         }
       ]
     },
     {
       id: 6,
       label: '关于',
-      path: '/about'
+      path: '/about',
+      icon: 'mdi:information-outline'
     }
   ]
 })

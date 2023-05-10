@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import { NConfigProvider, zhCN } from 'naive-ui'
 import type { GlobalThemeOverrides } from 'naive-ui'
+import { darkTheme } from 'naive-ui'
+import { useDark } from '@vueuse/core'
 
+const isDark = useDark()
 // 主题配置
 const themeOverrides: GlobalThemeOverrides = {
   Layout: {
@@ -16,12 +19,19 @@ const themeOverrides: GlobalThemeOverrides = {
   },
   Card: {
     borderRadius: '16px'
+  },
+  Button: {
+    borderRadiusSmall: 'none'
   }
 }
 </script>
 
 <template>
-  <n-config-provider :locale="zhCN" :theme-overrides="themeOverrides">
+  <n-config-provider
+    :locale="zhCN"
+    :theme-overrides="themeOverrides"
+    :theme="isDark ? darkTheme : undefined"
+  >
     <NaiveProvider>
       <RouterView />
     </NaiveProvider>

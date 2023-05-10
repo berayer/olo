@@ -25,7 +25,15 @@
 
       <n-popover placement="bottom" trigger="hover" :delay="500">
         <template #trigger>
-          <n-button quaternary circle size="small" class="p-5" :focusable="false" :loading="state.loading" @click="refresh">
+          <n-button
+            quaternary
+            circle
+            size="small"
+            class="p-5"
+            :focusable="false"
+            :loading="state.loading"
+            @click="refresh"
+          >
             <template #icon>
               <Icon name="material-symbols:refresh-rounded" />
             </template>

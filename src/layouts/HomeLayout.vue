@@ -26,6 +26,7 @@ import { useTabStore, useAppStore } from '@/store'
 import { registerRouterByMenus } from '@/utils/router'
 import { useRoute } from 'vue-router'
 import { router } from '@/router'
+import Icon from '@/components/Icon.vue'
 
 const tabStore = useTabStore()
 const appStore = useAppStore()
@@ -51,7 +52,8 @@ function coverToMenus(menus: Menu[]): MenuOption[] {
   return menus.map((v) => {
     const item: MenuOption = {
       key: v.path,
-      label: v.label
+      label: v.label,
+      icon: () => h(Icon, { name: v.icon, size: 24 }, { default: () => '' })
     }
     if (v.children) {
       item.children = coverToMenus(v.children)
