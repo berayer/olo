@@ -1,9 +1,11 @@
 <template>
-  <n-button text>首页</n-button>
-  <div>
-    当前模式: <span>{{ isDark }}</span>
-  </div>
-  <n-button @click="toggleDark()">切换</n-button>
+  <n-card>
+    <n-button text>首页</n-button>
+    <div>
+      当前模式: <span>{{ isDark }}</span>
+    </div>
+    <n-button @click="toggleDark()">切换</n-button>
+  </n-card>
 </template>
 
 <script setup lang="ts">

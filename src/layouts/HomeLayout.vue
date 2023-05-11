@@ -1,18 +1,14 @@
 <template>
   <n-layout has-sider class="h-screen">
-    <n-layout-sider :width="appStore.siderWidth">
+    <n-layout-sider bordered :width="appStore.siderWidth">
       <GlobalSider />
     </n-layout-sider>
     <n-layout class="h-full">
-      <n-layout-header class="h-12">
+      <n-layout-header bordered class="h-12">
         <GlobalHeader />
       </n-layout-header>
-      <n-layout-content
-        content-style="margin: 0 16px 16px 0; border-radius: 16px; height: calc(100vh - 64px); background-color: #ffffff;"
-      >
-        <!-- <n-scrollbar class="h-full"> -->
+      <n-layout-content content-style="padding: 16px">
         <router-view />
-        <!-- </n-scrollbar> -->
       </n-layout-content>
     </n-layout>
   </n-layout>

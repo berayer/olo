@@ -1,31 +1,3 @@
-<script setup lang="ts">
-import { NConfigProvider, zhCN } from 'naive-ui'
-import type { GlobalThemeOverrides } from 'naive-ui'
-import { darkTheme } from 'naive-ui'
-import { useDark } from '@vueuse/core'
-
-const isDark = useDark()
-// 主题配置
-const themeOverrides: GlobalThemeOverrides = {
-  Layout: {
-    siderColor: '#e3e3e3',
-    headerBorderColor: '#d3d3a3',
-    headerColor: '#e3e3e3',
-    siderBorderColor: '#f3ad3d',
-    color: '#e3e3e3'
-  },
-  Menu: {
-    borderRadius: '16px'
-  },
-  Card: {
-    borderRadius: '16px'
-  },
-  Button: {
-    borderRadiusSmall: 'none'
-  }
-}
-</script>
-
 <template>
   <n-config-provider
     :locale="zhCN"
@@ -37,3 +9,18 @@ const themeOverrides: GlobalThemeOverrides = {
     </NaiveProvider>
   </n-config-provider>
 </template>
+
+<script setup lang="ts">
+import { NConfigProvider, zhCN } from 'naive-ui'
+import { darkTheme } from 'naive-ui'
+import { useDark } from '@vueuse/core'
+import { NaiveLightTheme, NaiveDarkTheme } from './config'
+
+// 是否暗黑模式
+const isDark = useDark()
+// Naive主题配置
+console.log(isDark.value)
+const themeOverrides = computed(() => {
+  return isDark.value ? NaiveDarkTheme : NaiveLightTheme
+})
+</script>
